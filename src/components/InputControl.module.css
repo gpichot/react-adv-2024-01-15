@@ -1,0 +1,22 @@
+.inputControl {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 10px;
+}
+.inputControl input {
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 4px 8px;
+  height: 32px;
+}
+.label {
+  font-weight: bold;
+}
+
+.required .label:after {
+  content: "*";
+  margin-left: 3px;
+  color: red;
+}

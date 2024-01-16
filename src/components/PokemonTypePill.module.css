@@ -1,0 +1,5 @@
+.pill {
+  padding: 2px 4px;
+  border-radius: 5px;
+  display: inline-block;
+}
