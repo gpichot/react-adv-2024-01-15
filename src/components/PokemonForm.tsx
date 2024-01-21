@@ -7,11 +7,18 @@ export default function PokemonForm() {
   const [height, setHeight] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
 
+  const disabled = !name || !type;
+  const nameRef = React.useRef<HTMLInputElement>(null);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     console.log({ name, type, height, weight });
   };
+
+  React.useEffect(() => {
+    nameRef.current?.focus();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -21,6 +28,7 @@ export default function PokemonForm() {
         required
         value={name}
         onChange={(e) => setName(e.target.value)}
+        ref={nameRef}
       />
       <InputControl
         name="type"
@@ -47,7 +55,9 @@ export default function PokemonForm() {
           setWeight(isNaN(e.target.valueAsNumber) ? 0 : e.target.valueAsNumber)
         }
       />
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={disabled}>
+        Submit
+      </button>
     </form>
   );
 }

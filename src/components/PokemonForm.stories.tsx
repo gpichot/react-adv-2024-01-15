@@ -10,4 +10,6 @@ export default meta;
 
 type Story = StoryObj<typeof PokemonForm>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {},
+};

@@ -6,7 +6,10 @@ interface InputControlProps extends React.ComponentPropsWithoutRef<"input"> {
   name: string;
 }
 
-export default function InputControl(props: InputControlProps) {
+function BaseInputControl(
+  props: InputControlProps,
+  ref: React.ForwardedRef<HTMLInputElement>
+) {
   const { label, ...inputProps } = props;
   const id = React.useMemo(() => {
     if (props.id) return props.id;
@@ -20,7 +23,16 @@ export default function InputControl(props: InputControlProps) {
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <input type="text" {...inputProps} id={id} />
+      <input type="text" ref={ref} {...inputProps} id={id} />
     </div>
   );
 }
+
+const InputControl = React.forwardRef(BaseInputControl);
+
+// InputControl is an anonymous function so its best
+// to explicitly define its display name for DX in the
+// React DevTools
+InputControl.displayName = "InputControl";
+
+export default InputControl;

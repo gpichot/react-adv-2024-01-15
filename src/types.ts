@@ -1,3 +1,5 @@
+export type PokemonID = string | number;
+
 export type PokemonType =
   | "bug"
   | "dark"
